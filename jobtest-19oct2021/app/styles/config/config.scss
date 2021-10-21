@@ -1,0 +1,22 @@
+:root {
+    --black: #272727;
+    --vibrantBlue: #44e0dc;
+    --vibrantYellow: #ffed65;
+    --vibrantSalmon: #f07c79;
+}
+
+$imagedir: "./../assets/images/";
+
+$fz: 16;
+$nh: 0;
+$xx: 320px; // smartphone
+$xs: 599px; // smartphone
+$sm: 600px; // tablet portrait
+$md: 768px; // tablet landscape
+$lg: 1024px; // desktop
+$xl: 1280px; // extra large
+$wd: 1440px; // wide
+$xw: 1600px; // extra wide
+$en: 1920px; // enormous
+$tablet: $md;
+$desktop: $lg;

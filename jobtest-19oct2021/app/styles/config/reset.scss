@@ -1,0 +1,40 @@
+html {
+    box-sizing: border-box;
+}
+html:focus-within {
+    scroll-behavior: smooth;
+}
+*,
+:after,
+:before {
+    box-sizing: inherit;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    overflow-x: visible;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+ol,
+ul {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+    display: block;
+}
+address {
+    display: inline;
+    font-style: normal;
+}
+iframe {
+    border: 0;
+}

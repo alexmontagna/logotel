@@ -1,0 +1,31 @@
+:root {
+    --w: 300px;
+    --px: 15px;
+    --py: 30px;
+    @include for($md) {
+        --w: 600px;
+    }
+    @include for($lg) {
+        --w: 900px;
+    }
+    @include for($wd) {
+        --w: 1084px;
+    }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: var(--w);
+    display: flex;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-block: var(--py);
+}

@@ -1,0 +1,175 @@
+:root {
+    --timelineBorder: 10px solid white;
+    --timelineBorderRadius: 50px;
+}
+.timeline {
+    background-image: linear-gradient(180deg, #272727, #464646);
+    color: white;
+    padding-top: rem(100);
+}
+.timeline__list {
+    counter-reset: timeline-counter;
+    width: rem(560);
+    @include c;
+}
+
+.timeline__item {
+    display: flex;
+    position: relative;
+    border: var(--timelineBorder);
+    border-color: transparent;
+    border-radius: var(--timelineBorderRadius);
+    &:nth-of-type(3n + 1) {
+        color: var(--vibrantBlue);
+    }
+    &:nth-of-type(3n + 2) {
+        color: var(--vibrantYellow);
+    }
+    &:nth-of-type(3n + 3) {
+        color: var(--vibrantSalmon);
+    }
+    &:nth-of-type(odd) {
+        border-top: var(--timelineBorder);
+        border-right: var(--timelineBorder);
+    }
+    &:nth-of-type(even) {
+        border-top: var(--timelineBorder);
+        border-left: var(--timelineBorder);
+    }
+    &:last-child {
+        border-color: transparent;
+        &::before {
+            content: "";
+            position: absolute;
+            background-color: white;
+            height: rem(10);
+            width: 50%;
+            right: 0;
+            top: rem(-10);
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            background-color: #d8d8d8;
+            width: rem(36);
+            height: rem(36);
+            border-radius: 50%;
+            top: rem(-23);
+            left: 50%;
+            transform: translate(-50%);
+        }
+    }
+}
+
+.timeline__header {
+    position: absolute;
+    width: rem(250);
+    .timeline__item:nth-of-type(odd) & {
+        left: rem(-330);
+    }
+    .timeline__item:nth-of-type(even) & {
+        right: rem(-330);
+    }
+}
+
+.timeline__icon {
+    display: flex;
+    width: rem(92);
+    height: rem(92);
+    border-radius: 50%;
+    background-color: currentColor;
+    padding: rem(20);
+    position: absolute;
+    isolation: isolate;
+    &:focus {
+        outline: currentColor rem(10) solid;
+        outline-offset: rem(5);
+    }
+    .timeline__item:nth-of-type(odd) & {
+        top: rem(-50);
+        right: rem(-120);
+    }
+    .timeline__item:nth-of-type(even) & {
+        top: rem(-60);
+        left: rem(-120);
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        width: rem(140);
+        height: rem(140);
+        background-color: currentColor;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: inherit;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+    }
+    &:hover::before {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    .open & {
+        &::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.5;
+        }
+    }
+}
+
+.timeline__title {
+    @extend .title;
+    .timeline__item:nth-of-type(odd) & {
+        text-align: right;
+    }
+    position: relative;
+    display: block;
+    margin-top: rem(40);
+    &::before {
+        @extend .robotoMono;
+        @extend .bigNumber;
+        counter-increment: timeline-counter;
+        content: counter(timeline-counter) ".";
+        position: absolute;
+        top: rem(-70);
+        .timeline__item:nth-of-type(odd) & {
+            right: 0;
+        }
+        .timeline__item:nth-of-type(even) & {
+            left: 0;
+        }
+    }
+}
+
+.timeline__content {
+    width: 80%;
+    @include c;
+    padding-block: rem(30);
+    transform: scale(0);
+    max-height: rem(100);
+    opacity: 0;
+    transition: transform 0.6s ease-in-out, max-height 0.6s ease-in-out,
+        opacity 0.8s ease-in-out;
+    .open & {
+        transform: scale(1);
+        max-height: 100vh;
+        opacity: 1;
+    }
+}
+
+.timeline__content__title {
+    @extend .title;
+    @extend .robotoMono;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.timeline__content__paragraph {
+    color: white;
+    margin-top: 1rem;
+    &:last-child {
+        margin-bottom: 3rem;
+    }
+}
